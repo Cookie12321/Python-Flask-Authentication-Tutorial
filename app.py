@@ -5,6 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
+import openai
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
@@ -71,6 +72,11 @@ def login():
                 login_user(user)
                 return redirect(url_for('dashboard'))
     return render_template('login.html', form=form)
+
+
+@app.route('/openai', methods=['GET', 'POST'])
+def openai():
+    return render_template('openai.html')
 
 
 @app.route('/dashboard', methods=['GET', 'POST'])
