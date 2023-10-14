@@ -62,6 +62,11 @@ def home():
     return render_template('home.html')
 
 
+@app.route('/openai', methods=['GET', 'POST'])
+def openai():
+    return render_template('openai.html')
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -72,11 +77,6 @@ def login():
                 login_user(user)
                 return redirect(url_for('dashboard'))
     return render_template('login.html', form=form)
-
-
-@app.route('/openai', methods=['GET', 'POST'])
-def openai():
-    return render_template('openai.html')
 
 
 @app.route('/dashboard', methods=['GET', 'POST'])
